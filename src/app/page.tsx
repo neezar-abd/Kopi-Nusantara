@@ -7,13 +7,11 @@ import Menu from "@/components/sections/Menu";
 import Gallery from "@/components/sections/Gallery";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
-import Preloader from "@/components/ui/Preloader";
 import BackToTop from "@/components/ui/BackToTop";
 
 export default function Home() {
   return (
     <>
-      <Preloader />
       <Navbar />
       <main>
         <Hero />
