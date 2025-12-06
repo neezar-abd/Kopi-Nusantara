@@ -1,30 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Play } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Play } from "lucide-react";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,7 +36,7 @@ export default function Hero() {
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop')",
-          transform: `scale(1.1) translateY(${scrollY * 0.3}px) translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+          transform: "scale(1.08)",
         }}
       >
         {/* Overlay with gradient */}
@@ -67,20 +47,16 @@ export default function Hero() {
 
       {/* Floating Decorative Elements - Hidden on mobile */}
       <div 
-        className="hidden md:block absolute top-1/4 left-10 w-32 h-32 border border-white/10 rounded-full transition-transform duration-300"
-        style={{ transform: `translate(${mousePosition.x * -1}px, ${mousePosition.y * -1}px)` }}
+        className="hidden md:block absolute top-1/4 left-10 w-32 h-32 border border-white/10 rounded-full"
       />
       <div 
-        className="hidden md:block absolute bottom-1/4 right-10 w-48 h-48 border border-white/5 rounded-full transition-transform duration-300"
-        style={{ transform: `translate(${mousePosition.x * 1.5}px, ${mousePosition.y * 1.5}px)` }}
+        className="hidden md:block absolute bottom-1/4 right-10 w-48 h-48 border border-white/5 rounded-full"
       />
       <div 
-        className="hidden md:block absolute top-1/3 right-1/4 w-2 h-2 bg-coksu/60 rounded-full transition-transform duration-300"
-        style={{ transform: `translate(${mousePosition.x * 2}px, ${mousePosition.y * 2}px)` }}
+        className="hidden md:block absolute top-1/3 right-1/4 w-2 h-2 bg-coksu/60 rounded-full"
       />
       <div 
-        className="hidden md:block absolute bottom-1/3 left-1/4 w-3 h-3 bg-white/20 rounded-full transition-transform duration-300"
-        style={{ transform: `translate(${mousePosition.x * -2}px, ${mousePosition.y * -2}px)` }}
+        className="hidden md:block absolute bottom-1/3 left-1/4 w-3 h-3 bg-white/20 rounded-full"
       />
 
       {/* Content */}
